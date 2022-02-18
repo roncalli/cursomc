@@ -30,6 +30,9 @@ public class Produto implements Serializable{
 	private String nome;
 	private Double preço;
 	
+	@ManyToMany(mappedBy = "produtos")
+	private List<Pedido> pedidos = new ArrayList<>(); 
+	
 	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="PRODUTO_CATEGORIA",
@@ -79,6 +82,14 @@ public class Produto implements Serializable{
 
 	public void setCategorias(List<Categoria> categoria) {
 		this.categorias = categoria;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
