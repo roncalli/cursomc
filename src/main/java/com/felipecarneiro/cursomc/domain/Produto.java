@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Produto implements Serializable{
@@ -27,6 +30,7 @@ public class Produto implements Serializable{
 	private String nome;
 	private Double preço;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="PRODUTO_CATEGORIA",
 				joinColumns = @JoinColumn(name="produto_id"),
@@ -69,11 +73,11 @@ public class Produto implements Serializable{
 		this.preço = preço;
 	}
 
-	public List<Categoria> getCategoria() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategoria(List<Categoria> categoria) {
+	public void setCategorias(List<Categoria> categoria) {
 		this.categorias = categoria;
 	}
 
@@ -93,7 +97,5 @@ public class Produto implements Serializable{
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 	
 }
