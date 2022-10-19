@@ -35,6 +35,4 @@ public class StandartError implements Serializable
 		this.msg = msg;
 		this.timeStamp = timeStamp;
 	}
-	
-	
 }
